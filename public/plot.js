@@ -1,7 +1,14 @@
 // データベースの参照を準備
 var firebaseRef = new Firebase("https://xxxxxxxx.firebaseio.com"); // ... 1
-var messagesRef = firebaseRef.child('sensor').orderByChild('time').startAt(1530421800).limitToLast(6 * 24  * 7); // ... 2
-
+var date = new Date();
+date.setDate(date.getDate() - 1);
+//date.setHours(0);
+//date.setMinutes(0);
+//date.setSeconds(0);
+var a = date.getTime();
+var b = Math.floor(a / 1000);
+console.log(date);
+var messagesRef = firebaseRef.child('sensor').orderByChild('time').startAt(b);// ... 2
 var ctx_p = document.getElementById("pressure").getContext('2d');
 var chart_p = new Chart(ctx_p, {
   type: 'line',
