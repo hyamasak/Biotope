@@ -3,6 +3,7 @@
 from firebase import firebase
 import paho.mqtt.client as mqtt
 import json
+import time
 
 host = 'localhost'
 port = 1883
@@ -17,6 +18,9 @@ def on_message(client, userdata, msg):
   fb = firebase.FirebaseApplication("https://xxxxxxxx.firebaseio.com", None)
   print(msg.topic + ' ' + msg.payload)
   d = json.loads(msg.payload)
+  d['devicetime'] = d['time']
+  d['time'] = int(time.time())
+  #print(d)
   result = fb.post('/sensor', d)
 
 while True:
