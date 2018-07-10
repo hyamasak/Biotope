@@ -8,7 +8,8 @@ date.setDate(date.getDate() - 1);
 var a = date.getTime();
 var b = Math.floor(a / 1000);
 console.log(date);
-var messagesRef = firebaseRef.child('sensor').orderByChild('time').startAt(b);// ... 2
+var messagesRef = firebaseRef.child('sensor').orderByChild('time').startAt(b); // ... 2
+
 var ctx_p = document.getElementById("pressure").getContext('2d');
 var chart_p = new Chart(ctx_p, {
   type: 'line',
@@ -25,7 +26,7 @@ var chart_p = new Chart(ctx_p, {
   options: {
     scales: {
       xAxes:[{type: 'time', distribution: 'series'}],
-      yAxes:[{ticks:{min: 900, max: 1100}}],
+      yAxes:[{ticks:{min: 980, max: 1080}}],
     },
   }
 });
